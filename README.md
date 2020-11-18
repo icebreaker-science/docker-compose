@@ -6,7 +6,6 @@ How to use it:
 
 1. Clone this repository.
 2. In the case of production: Create a `docker-compose.override.yml` file, overwrite at least the database password and the JWT secret and use the `production` tag of the images.
-3. Download https://raw.githubusercontent.com/icebreaker-science/backend/develop/database/init.sql.
-4. Run `docker-compose up`.
+3. Run `docker-compose up`.
 
 The website is now available at http://localhost:12100 and the backend server is hosted at http://localhost:12100/api/.
