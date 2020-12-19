@@ -29,6 +29,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - ICEBREAKER_JWTSECRET=secret
       - MEDIA_DIR=/home/media/
+      - ICEBREAKER_NEO4J_HOST=neo4j
+      - ICEBREAKER_NEO4J_PORT=7687
     volumes:
       - ./media:/home/media
 
@@ -56,6 +58,23 @@ services:
     volumes:
       - ./nginx-icebreaker.conf:/etc/nginx/conf.d/default.conf
       - ./media:/home/media
+
+  neo4j:
+    image: neo4j:latest
+    container_name: icebreaker_neo4j
+    restart: unless-stopped
+    networks:
+      database:
+        aliases:
+          - neo4j
+    ports:
+      - 12220:7474  # HTTP / Web interface
+      - 12221:7687  # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/elsa  # The username cannot be changed.
+    volumes:
+      - ./neo4j_data:/data
+      - ./neo4j_import:/import
 
 networks:
   frontend:
