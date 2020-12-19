@@ -73,7 +73,8 @@ services:
     environment:
       NEO4J_AUTH: neo4j/elsa  # The username cannot be changed.
     volumes:
-      - ./data:/data
+      - ./neo4j_data:/data
+      - ./neo4j_import:/import
 
 networks:
   frontend:
